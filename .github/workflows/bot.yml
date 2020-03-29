@@ -39,3 +39,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
       env:
         CI: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
