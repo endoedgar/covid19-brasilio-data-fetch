@@ -25,12 +25,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: node catador.js
-    - name: Commit files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "Add changes" -a
-    - name: Push Changes
     - uses: mikeal/publish-to-github-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
