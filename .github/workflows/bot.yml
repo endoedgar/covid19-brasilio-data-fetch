@@ -4,7 +4,7 @@
 name: Bot
 
 on:
-  scheduled:
+  schedule:
     - cron:  '* * * * *'
 
 jobs:
