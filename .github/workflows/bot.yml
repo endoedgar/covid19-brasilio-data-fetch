@@ -17,7 +17,6 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: mikeal/publish-to-github-action@master
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -26,6 +25,14 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: node catador.js
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+    - name: Push Changes
+    - uses: mikeal/publish-to-github-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
       env:
         CI: true
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
