@@ -4,10 +4,9 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '*/15 * * * *'
 
 jobs:
   build:
@@ -16,9 +15,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [12.x]
 
     steps:
+    - uses: mikeal/publish-to-github-action@master
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -29,3 +29,4 @@ jobs:
     - run: node catador.js
       env:
         CI: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
