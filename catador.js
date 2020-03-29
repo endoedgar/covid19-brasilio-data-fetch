@@ -93,8 +93,11 @@ function pegar(url) {
 pegar("https://brasil.io/api/dataset/covid19").pipe(
 ).subscribe(
   (dados) => {
-    dados.ultimaAtualizacaoDados = _ultimaAtualizacaoDados;
-    fs.writeFileSync("dados/dados.json", JSON.stringify(dados));
+    resultado = {
+      results: dados,
+      ultimaAtualizacaoDados: _ultimaAtualizacaoDados
+    };
+    fs.writeFileSync("dados/dados.json", JSON.stringify(resultado));
   },
   console.error
 );
