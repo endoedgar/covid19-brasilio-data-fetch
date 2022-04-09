@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/endoedgar/covid19-brasilio-data-fetch#readme",
   "dependencies": {
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-fetch": "^2.6.0",
     "rxjs": "^6.5.4"
   }
